@@ -5,7 +5,6 @@ var currentVarSongIndex;
 var paused, playing;
 var varSongLength;
 // based on extensive production testing, best bet is to default to webm and fallback to mp3
-//going to have to include crossfade to get rid of popping sounds
 function soundSetup(){
   updateState(false, false);
   varSong = [];
@@ -57,11 +56,14 @@ function playSong(){
       stopSong();
     }
 
-        mainSongID = mainSong.play();
+      mainSongID = mainSong.play();
+
         varSongID[currentVarSongIndex] = varSong[currentVarSongIndex].play();
 
-        varSong[currentVarSongIndex].once('end', playNextVarSong(), varSongID[currentVarSongIndex]);
-
+        varSong[currentVarSongIndex].once('end',
+          function(){
+            playNextVarSong(varSongID[currentVarSongIndex])
+          }, varSongID[currentVarSongIndex]);
 
 
 }
@@ -75,18 +77,17 @@ function pauseSong(){
   updateState(false, true);
 }
 function stopSong(){
-
   mainSong.stop();
   for(var x = 0; x<varSong.length; x++)
   {
     varSong[x].stop();
   }
   frameRate(0);
-  resetIDs();
   updateState(false, false);
 }
 
-function playNextVarSong(){
+function playNextVarSong(inputID){
+  if(inputID == varSongID[currentVarSongIndex]){
     currentVarSongIndex++;
     currentVarSongIndex = currentVarSongIndex%varSongLength;
     if(currentVarSongIndex == 0){
@@ -95,6 +96,7 @@ function playNextVarSong(){
     }
     varSongID[currentVarSongIndex] = varSong[currentVarSongIndex].play();
     varSong[currentVarSongIndex].once('end', playNextVarSong);
+  }
 }
 
 function swapVarSong(index1, index2){
