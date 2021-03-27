@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AV Connective App</title>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.js"></script>
+<script src="https://unpkg.com/p5.createloop@0.2.8/dist/p5.createloop.js"></script>
+<script src="node_modules/howler/dist/howler.js"></script>
+<script src="node_modules/p5/p5.sound.js"></script>
+  <script src="View/sketch.js"></script>
+  <script src="Controller/movingBlock.js"></script>
+  <script src = "Controller/sounds.js"></script>
+
+  <style>
+  .moveableBlocks {
+  float: left;
+  width: 100px;
+  height: 35px;
+
+  border: 1px solid black;
+}
+</style>
+</head>
+
+<body>
+  <main>
+
+</main>
+<div id="div1" class = "moveableBlocks" ondrop="drop(event,this)" ondragover="allowDrop(event)">
+  <img src="Resources/Images/1_moveableBlock.png" draggable="true" ondragstart="drag(event)" id="drag1" width=100% height = 100%>
+</div>
+
+<div id="div2" class = "moveableBlocks" ondrop="drop(event,this)" ondragover="allowDrop(event)">
+  <img src="Resources/Images/2_moveableBlock.jpeg" draggable="true" ondragstart="drag(event)" id="drag2" width=100% height = 100%>
+</div>
+<div id="div3" class = "moveableBlocks" ondrop="drop(event,this)" ondragover="allowDrop(event)">
+  <img src="Resources/Images/3_moveableBlock.png" draggable="true" ondragstart="drag(event)" id="drag3" width=100% height = 100%>
+</div>
+<div id="div4" class = "moveableBlocks" ondrop="drop(event,this)" ondragover="allowDrop(event)">
+  <img src="Resources/Images/4_moveableBlock.jpeg" draggable="true" ondragstart="drag(event)" id="drag4" width=100% height = 100%>
+</div>
+</body>
+
+</html>
